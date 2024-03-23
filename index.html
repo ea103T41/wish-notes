@@ -5,6 +5,7 @@
     <title>Collect daigou wish notes</title>
     <script src="https://kit.fontawesome.com/699efbeea6.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/model.css">
 </head>
 <body class="bg-img">
     <main>
@@ -26,30 +27,39 @@
                             <label class="form-label" for="wish">
                                 <span>你的心願</span>
                                 <em class="form-require" aria-hidden="true">*</em>
+                                <em class="invalid-feedback hidden">請輸入心願</em>
                             </label>
-                            <textarea class="form-control" id="wish" rows="1"></textarea>
+                            <input type="text" id="wish" class="form-control required" />
                         </div>
                         <div class="form-group half-width">
-                            <label class="form-label" for="wishNumber">數量</label>
-                            <input type="text" id="wishNumber" class="form-control" />
+                            <label class="form-label" for="wishNumber">
+                                <span>心願數量</span>
+                                <em class="invalid-feedback hidden">請輸入數字</em>
+                            </label>
+                            <input type="text" id="wishNumber" class="form-control is-digit" />
                         </div>
                         <div class="form-group half-width">
-                            <label class="form-label" for="wishBudget">預算上限</label>
-                            <input type="text" id="wishBudget" class="form-control" />
+                            <label class="form-label" for="wishBudget">
+                                <span>預算上限</span>
+                                <em class="invalid-feedback hidden">請輸入數字</em>
+                            </label>
+                            <input type="text" id="wishBudget" class="form-control is-digit" />
                         </div>
                         <div class="form-group half-width">
                             <label class="form-label" for="wisherName">
                                 <span>姓名</span>
                                 <em class="form-require" aria-hidden="true">*</em>
+                                <em class="invalid-feedback hidden">請輸入姓名</em>
                             </label>
-                            <input type="text" id="wisherName" class="form-control" />
+                            <input type="text" id="wisherName" class="form-control required" />
                         </div>
                         <div class="form-group half-width">
                             <label class="form-label" for="wisherEmail">
                                 <span>信箱</span>
                                 <em class="form-require" aria-hidden="true">*</em>
+                                <em class="invalid-feedback hidden">請輸入正確信箱</em>
                             </label>
-                            <input type="text" id="wisherEmail" class="form-control" />
+                            <input type="text" id="wisherEmail" class="form-control required is-email" />
                         </div>
                         <div class="form-group">
                             <input class="form-check-input" type="checkbox" value="" id="wishCopy"/>
@@ -62,8 +72,14 @@
             </div>
             <div class="card-footer">
                 <div class="card-footer-item">
-                    <button class="btn">貼上</button>
+                    <button class="btn submit">貼上</button>
                 </div>
+            </div>
+        </div>
+        <div class="modal-container">
+            <div class="modal">
+                <span>心願已經傳送，如果願望成真會通知您</span>
+                <button data-close-modal class="btn close">關閉</button>
             </div>
         </div>
     </main>
@@ -87,4 +103,5 @@
         </div>
     </footer>
 </body>
+<script src="js/main.js"></script>
 </html>

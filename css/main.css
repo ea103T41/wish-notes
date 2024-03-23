@@ -28,9 +28,7 @@ body {
     background-size: cover;
     z-index: -1;
 }
-
-header {}
-nav {}
+/* main */
 main {
     padding: 3rem;
 }
@@ -77,8 +75,11 @@ main {
     font-size: 16px;
     font-weight: 700;
 }
-.form-require {
+.form-require, .invalid-feedback {
     color: #f00;
+}
+.hidden {
+    display: none;
 }
 .form-outline {
 }
@@ -94,6 +95,9 @@ main {
     border-width: 1px;
     border-bottom-width: 3px;
     border-radius: 2rem;
+}
+.form-invalid {
+    background-color: lemonchiffon;
 }
 .form-check-label {
     cursor: pointer;
