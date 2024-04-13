@@ -1,0 +1,20 @@
+{
+  "name": "wish-notes",
+  "version": "1.0.0",
+  "description": "Collect daigou wish notes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ea103T41/wish-notes.git"
+  },
+  "keywords": [],
+  "author": "euphyfang",
+  "license": "ISC",
+  "homepage": "https://github.com/ea103T41/wish-notes",
+  "dependencies": {
+    "node-static": "^0.7.11"
+  }
+}
