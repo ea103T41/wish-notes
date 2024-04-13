@@ -1,0 +1,72 @@
+/* tooltip refer to https://www.cssportal.com/css-tooltip-generator/ */
+
+[data-tooltip] {
+    position: relative;
+    pointer: cursor;
+}
+[data-tooltip]::before,
+[data-tooltip]::after {
+    text-transform: none;
+    font-size: .9em;
+    line-height: 1;
+    position: absolute;
+    display: none;
+    opacity: 0;
+}
+[data-tooltip]::before {
+    content: '';
+    border: 6px solid transparent;
+    z-index: 101;
+}
+[data-tooltip]::after {
+    content: attr(data-tooltip);
+    text-align: center;
+    min-width: 3em;
+    max-width: 21em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 6px 8px;
+    border-radius: 3px;
+    background: #333333;
+    color: #FFFFFF;
+    z-index: 100;
+}
+[data-tooltip]::before,
+[data-tooltip]::after {
+    display: block;
+}
+[data-tooltip='']::before,
+[data-tooltip='']::after {
+    display: none !important;
+}
+[data-tooltip]::before {
+    bottom: calc(100% + 5px);
+    border-bottom-width: 0;
+    border-top-color: #333333;
+}
+[data-tooltip]::after {
+    bottom: calc(100% + 10px);
+}
+[data-tooltip]::before,
+[data-tooltip]::after {
+    left: 50%;
+    transform: translate(-50%, -.4em);
+}
+
+@keyframes tooltip-vert {
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+@keyframes tooltip-horz {
+    to {
+        opacity: 1;
+        transform: translate(0, -50%);
+    }
+}
+[data-tooltip]::before,
+[data-tooltip]::after {
+    animation: tooltip-vert .5s ease-out forwards;
+}

@@ -1,3 +1,4 @@
+@import "tooltip.css";
 footer {
     margin-top: auto;
 }
@@ -45,17 +46,6 @@ footer {
     border-color: transparent;
     background-color: var(--dark-color);
     color: var(--white-color);
-}
-
-.mailto-message {
-    transform: translate(35%, -200%);
-    position: absolute;
-    white-space: nowrap;
-    background-color: var(--black-color);
-    color: var(--white-color);
-    padding: var(--padding-small);
-    border-radius: var(--radius-small);
-    display: none;
 }
 
 @media only screen and (min-width: 1200px) {

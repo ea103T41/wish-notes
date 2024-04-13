@@ -1,3 +1,5 @@
+import { blockScroll, unblockScroll, fadeIn, fadeOut } from './model.js';
+
 const submitBtn = document.querySelector(".submit");
 const wishList = document.querySelectorAll("[id^='wish']");
 const inputs = document.querySelectorAll("input");
@@ -13,11 +15,11 @@ const options = {
 
 const links = [...document.head.getElementsByTagName('link')];
 links.forEach((link) => {
-    var href = link.getAttribute('href');
-    link.setAttribute('href', href + '?v=' + new Date().getTime());
+    const href = link.getAttribute('href');
+    link.setAttribute('href', href + new Date().getTime());
 });
 
-inputs.forEach(input => input.addEventListener("input", clearInvalidMsg));
+inputs.forEach(input => input.addEventListener('input', clearInvalidMsg));
 submitBtn.addEventListener('click', submitForm);
 closeBtn.forEach(node => {
     node.addEventListener('click', () => {
@@ -39,10 +41,7 @@ function submitForm(e) {
         return;
     }
     const wishObj = verifyAndGetWishObj(wishList);
-
-    if (!hasInvalidInput()) {
-        sendToGoogle(wishObj);
-    }
+    sendToGoogle(wishObj);
 }
 
 function sendToGoogle(wishObj) {
@@ -158,47 +157,8 @@ function hasInvalidInput() {
     return false;
 }
 
-function fadeIn (el, display="inline-block", duration=400) {
-    el.style.opacity = el.style.opacity || 0;
-    el.style.display = display;
-    el.style.visibility = "visible";
-
-    let opacity = parseFloat(el.style.opacity) || 0;
-    const timer = setInterval( function() {
-        opacity += 20 / duration;
-        if( opacity >= 1 ) {
-            clearInterval(timer);
-            opacity = 1;
-        }
-        el.style.opacity = opacity;
-    }, 20 );
-};
-
-function fadeOut(el, duration=400) {
-    let opacity = 1;
-    const timer = setInterval( function() {
-        opacity -= 20 / duration;
-        if(opacity <= 0) {
-            clearInterval(timer);
-            opacity = 0;
-            el.style.display = "none";
-            el.style.visibility = "hidden";
-        }
-        el.style.opacity = opacity;
-    }, 20);
-};
-
-function blockScroll() {
-    document.body.style.overflow = 'hidden';
-}
-
-function unblockScroll() {
-    document.body.style.overflow = null;
-}
-
 const mailto = document.querySelector('.mailto');
-const msg = document.querySelector('.mailto-message');
-const messageSuccess = 'Copied to clipboard!';
+const messageSuccess = '已複製!';
 
 mailto.addEventListener('click', function(e) {
     e.preventDefault();
@@ -206,12 +166,8 @@ mailto.addEventListener('click', function(e) {
     var email = mailto.getAttribute('href').replace('mailto:', '');
     copyToClipboard(email);
 
-    msg.innerHTML = messageSuccess;
-    msg.style.display = 'block';
-    setTimeout(function() {
-        msg.innerHTML = '';
-        msg.style.display = 'none';
-    }, 2000);
+    mailto.setAttribute('data-tooltip', messageSuccess);
+    setTimeout(() => mailto.removeAttribute('data-tooltip'), 2000);
 });
 
 function copyToClipboard(text) {
