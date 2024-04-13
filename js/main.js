@@ -13,6 +13,12 @@ const options = {
     }
 }
 
+const links = [...document.head.getElementsByTagName('link')];
+links.forEach((link) => {
+//    console.log(link);
+    var href = link.getAttribute('href');
+    link.setAttribute('href', href + '?v=' + new Date().getTime());
+});
 
 inputs.forEach(input => input.addEventListener("input", clearInvalidMsg));
 submitBtn.addEventListener('click', submitForm);
@@ -36,8 +42,6 @@ function submitForm(e) {
         return;
     }
     const wishObj = verifyAndGetWishObj(wishList);
-    console.log(wishObj);
-    console.log(JSON.stringify(wishObj));
 
     if (!hasInvalidInput()) {
         sendToGoogle(wishObj);
@@ -107,7 +111,6 @@ function validate(input) {
     }
     if (input.classList.contains('is-email')) {
         if (!isEmail(input)) {
-            console.log("is not email");
             toggleInvalidMsg(input.id);
             return false;
         }
@@ -187,4 +190,31 @@ function blockScroll() {
 
 function unblockScroll() {
     document.body.style.overflow = null;
+}
+
+const mailto = document.querySelector('.mailto');
+const msg = document.querySelector('.mailto-message');
+const messageSuccess = 'Copied to clipboard!';
+
+mailto.addEventListener('click', function(e) {
+    e.preventDefault();
+
+    var email = mailto.getAttribute('href').replace('mailto:', '');
+    copyToClipboard(email);
+
+    msg.innerHTML = messageSuccess;
+    msg.style.display = 'block';
+    setTimeout(function() {
+        msg.innerHTML = '';
+        msg.style.display = 'none';
+    }, 2000);
+});
+
+function copyToClipboard(text) {
+    var dummy = document.createElement("input");
+    document.body.appendChild(dummy);
+    dummy.setAttribute('value', text);
+    dummy.select();
+    document.execCommand('copy');
+    document.body.removeChild(dummy);
 }

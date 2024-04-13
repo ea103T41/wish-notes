@@ -1,0 +1,56 @@
+:root {
+    /* color */
+    --white-color: #FFF;
+    --black-color: #000;
+    --red-color: #F00;
+    --main-color: #E89A8E;
+    --light-color: #FFFACDFF;
+    --dark-color: #3C3C39;
+
+    --font-size-normal: 1rem;
+
+
+    /* padding */
+    --padding-small: 0.5rem;
+    --padding-medium: 1rem;
+    --padding-large: 1.5rem;
+    --padding-xlarge: 2rem;
+    --padding-super: 3rem;
+
+    /* margin */
+    --margin-small: 0.5rem;
+    --margin-3quarter: 0.75rem;
+    --margin-medium: 1rem;
+    --margin-large: 1.5rem;
+    --margin-xlarge: 2rem;
+    --margin-super: 3rem;
+
+    /* radius */
+    --btn-circle: 50%;
+    --radius-small: 0.5rem;
+    --radius-medium: 1rem;
+    --radius-large: 2rem;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    /* footer touch end*/
+    display:flex;
+    flex-direction:column;
+    min-height: 100vh;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+/* remove link css */
+a:hover, a:visited, a:link, a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+.disabled {
+    pointer-events: none;
+}

@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <title>Collect daigou wish notes</title>
     <script src="https://kit.fontawesome.com/699efbeea6.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/model.css">
+    <link rel="stylesheet" href="css/base.css?v=">
+    <link rel="stylesheet" href="css/main.css?v=">
+    <link rel="stylesheet" href="css/footer.css?v=">
+    <link rel="stylesheet" href="css/model.css?v=">
 </head>
-<body class="bg-img">
+<body>
     <main>
         <div class="card-container">
             <div class="card-header">
@@ -19,9 +21,7 @@
                 <div class="card-body-item">
                     <div class="form-container">
                         <div class="form-group">
-                            <div class="col">
-                                <span class="form-description">告訴我你想買什麼，我們會想辦法實現</span>
-                            </div>
+                            <div class="form-info">告訴我你想買什麼，我們會想辦法實現</div>
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="wish">
@@ -87,16 +87,23 @@
         <div class="footer-container">
             <div class="footer-item-left">© 2024 Copyright: EuphyFang</div>
             <div class="footer-item-right">
-                <a class="btn btn-circle" role="button">
+                <a class="btn btn-circle" role="button"
+                   href="https://github.com/ea103T41"
+                   target="_blank">
                     <i class="fa-brands fa-github"></i>
                 </a>
-                <a class="btn btn-circle" role="button">
+                <a class="btn btn-circle" role="button"
+                   href="https://www.linkedin.com/in/fang-euphy/"
+                   target="_blank">
                     <i class="fa-brands fa-linkedin"></i>
                 </a>
-                <a class="btn btn-circle" role="button">
+                <a class="btn btn-circle mailto" role="button"
+                   href="mailto:ea103t41@gmail.com">
                     <i class="fab fa-google"></i>
                 </a>
-                <a class="btn btn-circle" role="button">
+                <span class="mailto-message"></span>
+                <a class="btn btn-circle disabled" role="button"
+                   target="_blank">
                     <i class="fa-brands fa-shopify"></i>
                 </a>
             </div>
