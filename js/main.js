@@ -7,7 +7,7 @@ const closeBtn = document.querySelectorAll('*[data-close-modal]');
 
 const options = {
     method: 'POST',
-    mode: 'cors',
+    mode: 'no-cors',
     headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
     }
@@ -53,18 +53,17 @@ function sendToGoogle(wishObj) {
     formData.append('entry.243484161', wishObj.wisherEmail);
 
     options.body = formData;
-
     const req = new Request(googleUrl, options);
     fetch(req).then((rsp) => {
+        console.log(rsp);
         inputs.forEach(input => input.value = '');
         fadeIn(modal, 'flex');
         blockScroll();
 
         // rsp.json().then((obj) => console.log(rsp))
-        console.log(rsp);
-        if (rsp.status === 200) {
-            console.log('success');
-        }
+//        if (rsp.status === 200) {
+//            console.log('success');
+//        }
     }).catch((err) => {
         console.log(err);
     });
