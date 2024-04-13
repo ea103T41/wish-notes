@@ -1,0 +1,32 @@
+.modal-container {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    align-items: center;
+    justify-content: center;
+}
+.modal {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    border-radius: 1rem;
+    padding: 1rem;
+    max-width: 480px;
+    min-height: 60px;
+}
+.close {
+    background-color: #E89A8E;
+    border: 0px;
+    border-radius: 1rem;
+    box-shadow: #000 1px 11px 9px -13px;
+    color: #FFF;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.5rem;
+    padding: 0.5rem 1rem;
+    margin-left: 1rem;
+}
