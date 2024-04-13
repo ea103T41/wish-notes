@@ -1,21 +1,18 @@
 const submitBtn = document.querySelector(".submit");
 const wishList = document.querySelectorAll("[id^='wish']");
 const inputs = document.querySelectorAll("input");
-const googleUrl = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSfEyuUcKksS07RsUSrH6ZUd5ZztGzAaNM5hZotbnVmw5Hnl1g/formResponse';
+const docUrl = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSfEyuUcKksS07RsUSrH6ZUd5ZztGzAaNM5hZotbnVmw5Hnl1g/formResponse';
+const scriptUrl = 'https://script.google.com/macros/s/AKfycbweNVPPb5DrbmtuBk99-FaqrkT-5mlleF0zbPv9PVqNMcLwjT-s9WAk73XeR_tCFg-i/exec';
 const modal = document.querySelector('.modal-container');
 const closeBtn = document.querySelectorAll('*[data-close-modal]');
 
 const options = {
     method: 'POST',
-    mode: 'no-cors',
-    headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-    }
+    mode: 'cors'
 }
 
 const links = [...document.head.getElementsByTagName('link')];
 links.forEach((link) => {
-//    console.log(link);
     var href = link.getAttribute('href');
     link.setAttribute('href', href + '?v=' + new Date().getTime());
 });
@@ -50,27 +47,34 @@ function submitForm(e) {
 
 function sendToGoogle(wishObj) {
     const formData = new FormData();
-    formData.append('entry.1886774351', wishObj.wish);
-    formData.append('entry.988848665', wishObj.wishNumber);
-    formData.append('entry.205027762', wishObj.wishBudget);
-    formData.append('entry.1864506117', wishObj.wisherName);
-    formData.append('entry.243484161', wishObj.wisherEmail);
+    formData.append('url', docUrl);
+    formData.append('formData', convertToFormData(wishObj));
 
     options.body = formData;
-    const req = new Request(googleUrl, options);
+    const req = new Request(scriptUrl, options);
     fetch(req).then((rsp) => {
-        console.log(rsp);
+        // console.log(rsp);
         inputs.forEach(input => input.value = '');
         fadeIn(modal, 'flex');
         blockScroll();
 
-        // rsp.json().then((obj) => console.log(rsp))
-//        if (rsp.status === 200) {
-//            console.log('success');
-//        }
+        if (rsp.status === 200) {
+            console.log('Sent successfully!');
+        }
     }).catch((err) => {
-        console.log(err);
+        console.error('Error when fetching', err);
     });
+}
+
+function convertToFormData(wishObj) {
+    const entry = {
+        'entry.1886774351': wishObj.wish,
+        'entry.988848665': wishObj.wishNumber,
+        'entry.205027762': wishObj.wishBudget,
+        'entry.1864506117': wishObj.wisherName,
+        'entry.243484161': wishObj.wisherEmail
+    }
+    return JSON.stringify(entry);
 }
 
 function verifyAndGetWishObj(wishList) {
