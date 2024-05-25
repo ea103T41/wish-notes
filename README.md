@@ -8,7 +8,6 @@
 後端: Google Form  
 資料庫: Google Sheets
 
-model reference: https://uu9924079.medium.com/%E9%81%8B%E7%94%A8-js-%E6%88%96%E7%B4%94-css-%E8%A3%BD%E4%BD%9C%E7%B0%A1%E6%98%93-modal-a4c05d028902
 [Web Page](https://ea103t41.github.io/wish-notes)  
 [Google Form](https://docs.google.com/forms/d/e/1FAIpQLSfEyuUcKksS07RsUSrH6ZUd5ZztGzAaNM5hZotbnVmw5Hnl1g/viewform)
 
@@ -18,7 +17,5 @@ Tech reference:
 [Google Apps Script 基本使用：跨網域 AJAX、接 Firebase](https://www.letswrite.tw/gas-ajax-firebase/#%e5%bb%ba%e7%ab%8b-google-apps-script)
 
 TODO:
-- [ ] replace hard code by the property
-- [ ] Encrypt property files in GitHub
 - [ ] Loading screen
 - [ ] mail a copy of the form

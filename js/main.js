@@ -4,7 +4,6 @@ const submitBtn = document.querySelector(".submit");
 const wishList = document.querySelectorAll("[id^='wish']");
 const inputs = document.querySelectorAll("input");
 const docUrl = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSfEyuUcKksS07RsUSrH6ZUd5ZztGzAaNM5hZotbnVmw5Hnl1g/formResponse';
-const scriptUrl = 'https://script.google.com/macros/s/AKfycbweNVPPb5DrbmtuBk99-FaqrkT-5mlleF0zbPv9PVqNMcLwjT-s9WAk73XeR_tCFg-i/exec';
 const modal = document.querySelector('.modal-container');
 const closeBtn = document.querySelectorAll('*[data-close-modal]');
 
