@@ -5,18 +5,13 @@ const wishList = document.querySelectorAll("[id^='wish']");
 const inputs = document.querySelectorAll("input");
 const docUrl = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSfEyuUcKksS07RsUSrH6ZUd5ZztGzAaNM5hZotbnVmw5Hnl1g/formResponse';
 const modal = document.querySelector('.modal-container');
+const loader = document.querySelector('.loader-page');
 const closeBtn = document.querySelectorAll('*[data-close-modal]');
 
 const options = {
     method: 'POST',
     mode: 'cors'
 }
-
-const links = [...document.head.getElementsByTagName('link')];
-links.forEach((link) => {
-    const href = link.getAttribute('href');
-    link.setAttribute('href', href + new Date().getTime());
-});
 
 inputs.forEach(input => input.addEventListener('input', clearInvalidMsg));
 submitBtn.addEventListener('click', submitForm);
@@ -50,8 +45,10 @@ function sendToGoogle(wishObj) {
 
     options.body = formData;
     const req = new Request(scriptUrl, options);
+
+    toggleLoader();
     fetch(req).then((rsp) => {
-        // console.log(rsp);
+        toggleLoader();
         inputs.forEach(input => input.value = '');
         fadeIn(modal, 'flex');
         blockScroll();
@@ -176,4 +173,12 @@ function copyToClipboard(text) {
     dummy.select();
     document.execCommand('copy');
     document.body.removeChild(dummy);
+}
+
+function toggleLoader() {
+    if (loader.classList.contains('active')) {
+        loader.classList.remove('active');
+    } else {
+        loader.classList.add('active');
+    }
 }

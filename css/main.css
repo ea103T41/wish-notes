@@ -1,3 +1,8 @@
+@import "base.css";
+@import "footer.css";
+@import "model.css";
+@import "loader.css";
+
 /* background image */
 body {
     position: relative;

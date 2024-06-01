@@ -17,5 +17,4 @@ Tech reference:
 [Google Apps Script 基本使用：跨網域 AJAX、接 Firebase](https://www.letswrite.tw/gas-ajax-firebase/#%e5%bb%ba%e7%ab%8b-google-apps-script)
 
 TODO:
-- [ ] Loading screen
 - [ ] mail a copy of the form
