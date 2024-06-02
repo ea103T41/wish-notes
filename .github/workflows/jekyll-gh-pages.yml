@@ -35,6 +35,8 @@ jobs:
         uses: actions/configure-pages@v5
       - name: Add script url
         run: echo "<script>const scriptUrl = '${{secrets.GOOGLE_SCRIPT_URL}}';</script>" >> index.html
+      - name: Add script mail url
+        run: echo "<script>const scriptMailUrl = '${{secrets.GOOGLE_SCRIPT_MAIL_URL}}';</script>" >> index.html
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
