@@ -57,7 +57,36 @@ function sendToGoogle(wishObj) {
             console.log('Sent successfully!');
         }
     }).catch((err) => {
-        console.error('Error when fetching', err);
+        console.error('Error when sendin form:', err);
+    });
+
+    if (wishObj.wishCopy) {
+        sendMail(wishObj);
+    }
+}
+
+function sendMail(wishObj) {
+    const mailTo = wishObj.wisherEmail;
+    const subject = '心願便利貼<回執聯>';
+    const message = '親愛的' + wishObj.wisherName + '，我們已經收到您的心願<br>'
+    + '心願內容：' + wishObj.wish + '<br>'
+    + '心願數量：' + wishObj.wishNumber + '<br>'
+    + '預算上限：' + wishObj.wishBudget + '<br>'
+    + '<br>'
+    + '感謝您對我們的支持！';
+
+    const formData = new FormData();
+    formData.append('mailTo', mailTo);
+    formData.append('subject', subject);
+    formData.append('message', message);
+
+    options.body = formData;
+    const req = new Request(scriptMailUrl, options);
+
+    fetch(req).then((rsp) => rsp.text()).then((rsp) => {
+        console.log(rsp);
+    }).catch((err) => {
+        console.error('Error when mailing:', err);
     });
 }
 
