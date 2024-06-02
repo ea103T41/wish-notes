@@ -123,6 +123,7 @@ function verifyAndGetWishObj(wishList) {
                     wishObj.wisherEmail = wishItem.value.trim();
                     break;
                 case 'wishCopy':
+                    wishObj.wishCopy = wishItem.checked;
                     break;
             }
         }
