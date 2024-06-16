@@ -1,8 +1,8 @@
 import { blockScroll, unblockScroll, fadeIn, fadeOut } from './model.js';
 
-const submitBtn = document.querySelector(".submit");
-const wishList = document.querySelectorAll("[id^='wish']");
-const inputs = document.querySelectorAll("input");
+const submitBtn = document.querySelector('.submit');
+const wishList = document.querySelectorAll('[id^="wish"]');
+const inputs = document.querySelectorAll('input');
 const docUrl = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSfEyuUcKksS07RsUSrH6ZUd5ZztGzAaNM5hZotbnVmw5Hnl1g/formResponse';
 const modal = document.querySelector('.modal-container');
 const loader = document.querySelector('.loader-page');
@@ -24,17 +24,17 @@ closeBtn.forEach(node => {
 
 function clearInvalidMsg(e) {
     const _input = e.target;
-    if (_input.classList.contains("form-invalid")) {
+    if (_input.classList.contains('form-invalid')) {
         toggleInvalidMsg(e.target.id);
     }
 }
 
 function submitForm(e) {
     e.preventDefault();
+    const wishObj = verifyAndGetWishObj(wishList);
     if (hasInvalidInput()) {
         return;
     }
-    const wishObj = verifyAndGetWishObj(wishList);
     sendToGoogle(wishObj);
 }
 
@@ -54,7 +54,7 @@ function sendToGoogle(wishObj) {
         blockScroll();
 
         if (rsp.status === 200) {
-            console.log('Sent successfully!');
+            console.log('Sent form successfully!');
         }
     }).catch((err) => {
         console.error('Error when sendin form:', err);
@@ -197,7 +197,7 @@ mailto.addEventListener('click', function(e) {
 });
 
 function copyToClipboard(text) {
-    var dummy = document.createElement("input");
+    var dummy = document.createElement('input');
     document.body.appendChild(dummy);
     dummy.setAttribute('value', text);
     dummy.select();
