@@ -35,21 +35,16 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      - name: Inject script config
+        run: |
+          echo "export const scriptUrl = '${{ secrets.GOOGLE_SCRIPT_URL }}';" > ./js/config.js
+          echo "export const scriptMailUrl = '${{ secrets.GOOGLE_SCRIPT_MAIL_URL }}';" >> ./js/config.js
+
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
           source: ./
           destination: ./_site
-
-      - name: Ensure config.js is writable
-        run: |
-          chmod +w ./_site/js/config.js || echo "skip chmod (file may not exist yet)"
-          touch ./_site/js/config.js
-
-      - name: Inject script config into config.js
-        run: |
-          echo "export const scriptUrl = '${{ secrets.GOOGLE_SCRIPT_URL }}';" > ./_site/js/config.js
-          echo "export const scriptMailUrl = '${{ secrets.GOOGLE_SCRIPT_MAIL_URL }}';" >> ./_site/js/config.js
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
