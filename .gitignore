@@ -131,3 +131,6 @@ dist
 
 # idea
 .idea/
+
+# Local env files
+js/config.js

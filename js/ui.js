@@ -36,6 +36,14 @@ function fadeOut(el, duration=400) {
     }, 20);
 };
 
+function showLoader(loader) {
+  loader.classList.add('active');
+}
+
+function hideLoader(loader) {
+  loader.classList.remove('active');
+}
+
 export {
-    blockScroll, unblockScroll, fadeIn, fadeOut
+    blockScroll, unblockScroll, fadeIn, fadeOut, showLoader, hideLoader
 }
