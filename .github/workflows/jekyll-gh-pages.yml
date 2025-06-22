@@ -41,6 +41,11 @@ jobs:
           source: ./
           destination: ./_site
 
+      - name: Ensure config.js is writable
+        run: |
+          chmod +w ./_site/js/config.js || echo "skip chmod (file may not exist yet)"
+          touch ./_site/js/config.js
+
       - name: Inject script config into config.js
         run: |
           echo "export const scriptUrl = '${{ secrets.GOOGLE_SCRIPT_URL }}';" > ./_site/js/config.js
