@@ -22,24 +22,29 @@ export function restoreFromLocalStorage(inputs) {
 
 export function validate(input) {
     const value = input.value.trim();
-    const isInvalid = (
-        (input.classList.contains('is-digit') && !isDigit(value)) ||
-        (input.classList.contains('is-email') && !isEmail(value)) ||
-        (input.classList.contains('required') && !value)
-    );
+    const validators = [
+        input.classList.contains('required') && isEmpty(value),
+        input.classList.contains('is-digit') && !isOptionalDigit(value),
+        input.classList.contains('is-email') && !isOptionalEmail(value),
+    ];
+    const isInvalid = validators.some(Boolean);
     toggleInvalidMsg(input.id, isInvalid);
     return !isInvalid;
 }
 
-function isDigit(value) {
-    return value === '' || /^\d+$/.test(value);
+function isEmpty(value) {
+  return value === '';
 }
 
-function isEmail(value) {
-    return value === '' || /^\S+@\S+\.\S+$/.test(value);
+function isOptionalDigit(value) {
+  return isEmpty(value) || /^\d+$/.test(value);
 }
 
-export function toggleInvalidMsg(id, isInvalid) {
+function isOptionalEmail(value) {
+  return isEmpty(value) || /^\S+@\S+\.\S+$/.test(value);
+}
+
+function toggleInvalidMsg(id, isInvalid) {
     const _itm = document.getElementById(id);
     const _invalidMsg = _itm.parentNode.querySelector('.invalid-feedback');
 
@@ -50,12 +55,14 @@ export function toggleInvalidMsg(id, isInvalid) {
 }
 
 export function hasInvalidInput(inputs) {
-    for (let i = 0; i < inputs.length; i++) {
-        if (inputs[i].classList.contains('form-invalid')) {
-            return true;
-        }
+    return Array.from(inputs)
+        .some(input => input.classList.contains('form-invalid'));
+}
+
+export function clearInvalidMsg(input) {
+    if (input.classList.contains('form-invalid')) {
+        toggleInvalidMsg(input.id);
     }
-    return false;
 }
 
 export function clearForm(inputs) {

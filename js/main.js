@@ -5,7 +5,7 @@ import {
 } from './ui.js';
 import {
     LOCAL_STORAGE_KEY, saveToLocalStorage, restoreFromLocalStorage,
-    validate, toggleInvalidMsg, hasInvalidInput, clearForm
+    validate, hasInvalidInput, clearInvalidMsg, clearForm
 } from './formHandler.js';
 import { scriptUrl, scriptMailUrl } from './config.js';
 
@@ -22,7 +22,7 @@ const authorMail = document.querySelector('.authorMail');
 
 inputs.forEach(input => {
     input.addEventListener('input', () => {
-        clearInvalidMsg({ target: input });
+        clearInvalidMsg(input);
         saveToLocalStorage(inputs);
     });
     input.addEventListener('blur', () => validate(input));
@@ -37,13 +37,6 @@ closeBtn.forEach(node => {
         unblockScroll();
     });
 });
-
-function clearInvalidMsg(e) {
-    const _input = e.target;
-    if (_input.classList.contains('form-invalid')) {
-        toggleInvalidMsg(e.target.id);
-    }
-}
 
 function submitForm(e) {
     e.preventDefault();
